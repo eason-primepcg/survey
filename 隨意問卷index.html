@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隨意小吃 - 顧客意見回饋表</title>
+    <style>
+        /* 隨意小吃專屬：羊皮紙復古黃與台味大紅視覺 */
+        body {
+            background-color: #F4ECD8; /* 老報紙羊皮紙黃 */
+            color: #333333;
+            font-family: "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-image: radial-gradient(#e6dab8 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 4px double #C82323; /* 復古雙紅線邊框 */
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            border-bottom: 2px dashed #C82323;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #C82323; /* 大火熱炒紅 */
+            font-size: 32px;
+            margin: 0 0 10px 0;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            font-weight: bold;
+            color: #C82323;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .form-group label span {
+            color: #888888;
+            font-size: 14px;
+            font-weight: normal;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* 輸入框樣式 */
+        input[type="text"], input[type="date"], textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e6dab8;
+            background-color: #FAF8F0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="date"]:focus, textarea:focus {
+            border-color: #C82323;
+            outline: none;
+            background-color: #ffffff;
+        }
+
+        /* 其他選項的延伸輸入框 */
+        input.inline-text {
+            width: auto;
+            display: inline-block;
+            padding: 4px 8px;
+            margin-left: 8px;
+            border: 1px solid #e6dab8;
+            background-color: #FAF8F0;
+            font-size: 14px;
+        }
+
+        /* 單選與複選橫向/縱向排列 */
+        .option-group {
+            margin-top: 5px;
+        }
+
+        .option-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin-right: 12px;
+            accent-color: #C82323; 
+            transform: scale(1.2);
+            cursor: pointer;
+        }
+
+        /* 滿意度 1-5 分橫向橫條樣式 */
+        .rating-container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            margin-top: 8px;
+            background: #FAF8F0;
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid #e6dab8;
+        }
+
+        .rating-label-hint {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            padding: 0 5px;
+            font-size: 12px;
+            color: #666666;
+            margin-top: 4px;
+        }
+
+        .rating-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 14px;
+            color: #333;
+            width: 50px;
+        }
+
+        .rating-item input {
+            margin-bottom: 6px;
+            margin-right: 0;
+        }
+
+        /* 提交按鈕 */
+        .submit-btn {
+            background-color: #C82323;
+            color: #ffffff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            letter-spacing: 4px;
+            box-shadow: 0 4px 0 #8a1414;
+            transition: all 0.1s;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #b01e1e;
+        }
+
+        .submit-btn:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>隨意小吃 意見回饋表</h1>
+        <p>我們隨意炒，你們隨便吃！<br>您的寶貴意見能讓我們變得更好，請協助我們填寫以下體驗問卷，甘溫🥰</p>
+    </div>
+
+    <form id="quizForm" action="你的GOOGLE_SCRIPT_網址" method="POST">
+        
+        <div class="form-group">
+            <label>1. 請問您本次用餐的日期？</label>
+            <input type="date" name="q1_visit_date" required>
+        </div>
+
+        <div class="form-group">
+            <label>2. 近兩個月是第幾次來到隨意小吃？<span>（單選題）</span></label>
+            <div class="option-group">
+                <div class="option-item"><input type="radio" name="q2_frequency" value="第1次" required> 第1次</div>
+                <div class="option-item"><input type="radio" name="q2_frequency" value="第2-5次"> 第2-5次</div>
+                <div class="option-item"><input type="radio" name="q2_frequency" value="我已經是鐵粉常客！"> 我已經是鐵粉常客！</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>3. 今天有哪一道菜覺得好吃？<span>（簡答題：請填寫菜名或簡單描述，若沒有可填「無」）</span></label>
+            <input type="text" name="q3_delicious_dish" placeholder="請填寫菜名..." required>
+        </div>
+
+        <div class="form-group">
+            <label>4. 今天有哪一道菜有待加強？<span>（簡答題：若沒有可填「無」）</span></label>
+            <input type="text" name="q4_improve_dish" placeholder="請填寫菜名..." required>
+        </div>
+
+        <div class="form-group">
+            <label>5. 承上題，請問主要的問題是？<span>（複選題）</span></label>
+            <div class="option-group">
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="沒味道"> 沒味道</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="太重口"> 太重口</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="太油膩"> 太油膩</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="鹽巴丟太多"> 鹽巴丟太多</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="沒有丟鹽巴"> 沒有丟鹽巴</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="份量太少"> 份量太少</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="食材過熟"> 食材過熟</div>
+                <div class="option-item"><input type="checkbox" name="q5_issues" value="食材過生"> 食材過生</div>
+                <div class="option-item">
+                    <input type="checkbox" name="q5_issues" value="其他"> 其他：
+                    <input type="text" name="q5_issues_other" class="inline-text" placeholder="請填寫原因...">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>6. 您對今天的服務滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q6_service" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q6_service" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q6_service" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q6_service" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q6_service" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>7. 您對今天餐點的份量滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q7_portion" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q7_portion" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q7_portion" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q7_portion" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q7_portion" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>8. 您對整體用餐環境的整潔狀況滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q8_cleanliness" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q8_cleanliness" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q8_cleanliness" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q8_cleanliness" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q8_cleanliness" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不慢意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>9. 您對出餐速度滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q9_speed" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q9_speed" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q9_speed" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q9_speed" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q9_speed" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>快滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>10. 您對隨意小吃工作人員的服務態度滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q10_attitude" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q10_attitude" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q10_attitude" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q10_attitude" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q10_attitude" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>11. 您對今天的餐點價位滿意嗎？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q11_price" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q11_price" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q11_price" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q11_price" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q11_price" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>12. 若有機會是否願意再來隨意想吃呢？</label>
+            <div class="rating-container">
+                <div class="rating-item"><input type="radio" name="q12_return" value="1" required><span>1</span></div>
+                <div class="rating-item"><input type="radio" name="q12_return" value="2"><span>2</span></div>
+                <div class="rating-item"><input type="radio" name="q12_return" value="3"><span>3</span></div>
+                <div class="rating-item"><input type="radio" name="q12_return" value="4"><span>4</span></div>
+                <div class="rating-item"><input type="radio" name="q12_return" value="5"><span>5</span></div>
+            </div>
+            <div class="rating-label-hint"><span>很不滿意</span><span>很滿意</span></div>
+        </div>
+
+        <div class="form-group">
+            <label>13. 若有任何建議能讓我們變得更好，請不吝告訴我們🥰<span>（簡答題）</span></label>
+            <textarea name="q13_suggestions" rows="4" placeholder="請寫下您的建議..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">填寫完成・提交意見表</button>
+    </form>
+
+    <div class="footer">
+        © 2026 隨意小吃 版權所有｜記憶中的超香鍋氣・用心料理
+    </div>
+</div>
+
+</body>
+</html>
